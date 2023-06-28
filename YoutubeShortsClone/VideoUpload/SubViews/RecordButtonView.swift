@@ -8,11 +8,18 @@
 import UIKit
 import SnapKit
 
+protocol RecordButtonViewDelegate: AnyObject {
+    func didTapRecordButtonView()
+}
 final class RecordButtonView: UIView {
-    private lazy var button: UIButton = {
+    
+    weak var delegate: RecordButtonViewDelegate?
+    
+    lazy var button: UIButton = {
         let button = UIButton()
         button.backgroundColor  = UIColor(red: 254/255, green: 44/255, blue: 85/255, alpha: 1.0)
         button.layer.cornerRadius = 34.0
+        button.addTarget(self, action: #selector(didTapRecordButtonView), for: .touchUpInside)
         return button
     }()
     init() {
@@ -34,5 +41,8 @@ extension RecordButtonView {
             $0.center.equalToSuperview()
             $0.width.height.equalTo(68.0)
         }
+    }
+    @objc private func didTapRecordButtonView() {
+        delegate?.didTapRecordButtonView()
     }
 }

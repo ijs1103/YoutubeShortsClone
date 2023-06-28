@@ -1,6 +1,0 @@
-framework module Pods_YoutubeShortsClone {
-  umbrella header "Pods-YoutubeShortsClone-umbrella.h"
-
-  export *
-  module * { export * }
-}
